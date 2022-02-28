@@ -1,6 +1,6 @@
 function randomNumber(min, max){
   const r = Math.random()*(max-min);
-  let result = (Math.floor(r) === 0) ?  console.log('это 0') :
+  (Math.floor(r) === 0) ?  console.log('это 0') :
   (max > min) ? console.log('min меньшу max') :
   (max < min) ? console.log('max меньшу min') : console.log('что то другое');
 }
