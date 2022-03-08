@@ -103,12 +103,13 @@ for (let i = 0; i < massiv.length; i++){
 function comment(){
    const name = ["Vasi", "Peti", "Andre"];
    const max = 6;
-
+   const text = ["Всё отлично!", "В целом всё неплохо. Но не всё."];
+   const arrText = Math.floor(Math.random() * text.length);
   let arr = name.map((nam, index) => ({
     comments : {
       id: index,
       avatar: `img/avatar-${Math.floor(Math.random() * max)}.svg`,
-      message: "Всё отлично!В целом всё неплохо. Но не всё.",
+      message: `${text[arrText]}`,
       name: nam,
     }
 
