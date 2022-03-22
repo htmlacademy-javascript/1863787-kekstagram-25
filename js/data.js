@@ -42,3 +42,15 @@ export const description = {
   export  const max = 6;
   export  const text = ["Всё отлично!", "В целом всё неплохо. Но не всё."];
   export  const arrText = Math.floor(Math.random() * text.length);
+
+
+
+
+
+  export const pictures = document.querySelector('.pictures');
+  export const template  = document.querySelector('#picture').content;
+  export const formS = document.querySelector('.img-upload');
+
+
+
+  export const photoObj = [{url:"img/logo-background-1.jpg"},{url:"img/logo-background-2.jpg"}];

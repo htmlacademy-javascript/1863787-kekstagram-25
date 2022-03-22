@@ -1,4 +1,4 @@
-import {id, description, nameFolov, max, text, arrText} from'./data.js';
+import {id, description, nameFolov, max, text, arrText,pictures, template, formS, photoObj} from'./data.js';
 
 
 //4.9. Больше деталей
@@ -9,10 +9,13 @@ for (let i = 0; i < massiv.length; i++){
   };
 export default  function test(){
 
+
   function randomLikes(max, min){
     return Math.floor(Math.random() * (max - min) + min);
   }
   console.log(randomLikes(200, 15));
+
+
 
   console.log(description);
 
@@ -33,6 +36,28 @@ function comment(){
     console.log(arr)
   }
   comment();
+
+
+
+
+
+formS.classList.add('hidden');
+
+
+
+  photoObj.forEach(photo => {
+
+     const clonePopup = template.querySelector('.picture').cloneNode(true);
+    clonePopup.querySelector('.picture__img').src = photo.url;
+     clonePopup.querySelector('.picture__likes').textContent = randomLikes(15, 200);
+     clonePopup.querySelector('.picture__comments').textContent = text.length;
+
+
+    pictures.append(clonePopup);
+     });
+
+
+
 }
 test();
 
@@ -80,4 +105,14 @@ console.log(upper);
   return string.length <= length;
 }
 console.log(checkStringLength('var', 'bard'));
+
+
+
+
+
+
+
+
+
+
 
