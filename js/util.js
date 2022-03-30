@@ -84,11 +84,18 @@ export default function test() {
   });
 
 
-  cancelButton.onclick = function () {
+  cancelButton.onclick = function (e) {
     bigPicture.classList.add('hidden');
     body.classList.remove('modal-open');
   };
 
+  cancelButton.keydown =function(e) {
+    console.log(e.keyCode);
+    if (e.keyCode === 27) {
+      bigPicture.classList.add('hidden');
+      body.classList.remove('modal-open');
+    }
+};
 }
 test();
 
