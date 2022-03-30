@@ -84,18 +84,19 @@ export default function test() {
   });
 
 
-  cancelButton.onclick = function (e) {
+  cancelButton.onclick = function () {
     bigPicture.classList.add('hidden');
     body.classList.remove('modal-open');
   };
 
-  cancelButton.keydown =function(e) {
-    console.log(e.keyCode);
-    if (e.keyCode === 27) {
+  document.addEventListener ('keydown', (evt)=>{
+    if (evt.key === 'Escape'){
+      evt.preventDefault();
       bigPicture.classList.add('hidden');
       body.classList.remove('modal-open');
     }
-};
+  })
+
 }
 test();
 
