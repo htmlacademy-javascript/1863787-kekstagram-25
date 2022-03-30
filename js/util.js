@@ -63,24 +63,6 @@ export default function test() {
       socialCaption.innerHTML = i.opis;
     });
 
-    avatar.forEach((ava) => {
-      const social = socialComment.querySelector('.social__comment').cloneNode(true);
-      const socialText = social.querySelector('.social__text');
-      const socialPicture = social.querySelector('.social__picture');
-      socialPicture.src = `img/${ava.url}.svg`;
-
-      nameFolov.forEach((nam) => {
-        socialPicture.alt = nam.name;
-      });
-      text.forEach((tex) => {
-        socialText.innerHTML = tex;
-      });
-
-      socialComment.append(social);
-
-    });
-    socialComment.removeChild(socialComment.children[0]);
-    socialComment.removeChild(socialComment.children[0]);
   });
 
 
@@ -99,6 +81,26 @@ export default function test() {
 
 }
 test();
+
+avatar.forEach((ava) => {
+  const social = socialComment.querySelector('.social__comment').cloneNode(true);
+  const socialText = social.querySelector('.social__text');
+  const socialPicture = social.querySelector('.social__picture');
+  socialPicture.src = `img/${ava.url}.svg`;
+
+  nameFolov.forEach((nam) => {
+    socialPicture.alt = nam.name;
+  });
+  text.forEach((tex) => {
+    socialText.innerHTML = tex;
+  });
+
+  socialComment.append(social);
+
+});
+socialComment.removeChild(socialComment.children[0]);
+socialComment.removeChild(socialComment.children[0]);
+
 
 // ДЗ 2
 // function randomNumber(min, max) {
