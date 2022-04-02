@@ -1,4 +1,4 @@
-import { id, nameFolov, maximum, text, arrText, pictures, template } from './data.js';
+import { photoObj, nameFolov, maximum, text, arrText, pictures, template, bigPicture, bigPictureS, cancelButton, commentsCount, body, socialCaption, description, socialComment, avatar } from './data.js';
 
 //4.9. Больше деталей
 export default function test() {
@@ -21,18 +21,86 @@ export default function test() {
   }
   comment();
 
+
   //ДЗ 7.1
-  const massiv = Object.keys(id);
-  massiv.forEach((i) => {
+  //   const massiv = Object.keys(photoObj);
+  //  console.log(massiv);
+
+
+  photoObj.forEach((i) => {
     const clonePopup = template.querySelector('.picture').cloneNode(true);
-    clonePopup.querySelector('.picture__img').src = `photos/${i}.jpg`;
+    const pictureImg = clonePopup.querySelector('.picture__img');
+    pictureImg.src = `photos/${i.url}.jpg`;
+    pictureImg.setAttribute('data-id', `${i.id}`);
+
     clonePopup.querySelector('.picture__likes').textContent = randomLikes(15, 200);
     clonePopup.querySelector('.picture__comments').textContent = text.length;
     pictures.append(clonePopup);
   });
 
+  const bigPict = bigPictureS.querySelector('img');
+  const likesCount = document.querySelector('.likes-count');
+
+  //ДЗ 7.2
+
+
+  const pictureLikes = document.querySelectorAll('.picture__likes');
+  pictures.addEventListener('click', (evt) => {
+    bigPicture.classList.remove('hidden');
+    body.classList.add('modal-open');
+
+    document.querySelector('.social__comment-count').classList.add('hidden'); // временная hidden
+    document.querySelector('.comments-loader').classList.add('hidden');// временная hidden
+
+    bigPict.src = evt.target.src;
+
+    const id = Number(evt.target.dataset.id);
+    likesCount.innerHTML = pictureLikes[id].innerHTML;
+
+    commentsCount.innerHTML = text.length;
+
+    description.forEach((i) => {
+      socialCaption.innerHTML = i.opis;
+    });
+
+  });
+
+
+  cancelButton.onclick = function () {
+    bigPicture.classList.add('hidden');
+    body.classList.remove('modal-open');
+  };
+
+  document.addEventListener ('keydown', (evt)=>{
+    if (evt.key === 'Escape'){
+      evt.preventDefault();
+      bigPicture.classList.add('hidden');
+      body.classList.remove('modal-open');
+    }
+  })
+
 }
 test();
+
+avatar.forEach((ava) => {
+  const social = socialComment.querySelector('.social__comment').cloneNode(true);
+  const socialText = social.querySelector('.social__text');
+  const socialPicture = social.querySelector('.social__picture');
+  socialPicture.src = `img/${ava.url}.svg`;
+
+  nameFolov.forEach((nam) => {
+    socialPicture.alt = nam.name;
+  });
+  text.forEach((tex) => {
+    socialText.innerHTML = tex;
+  });
+
+  socialComment.append(social);
+
+});
+socialComment.removeChild(socialComment.children[0]);
+socialComment.removeChild(socialComment.children[0]);
+
 
 // ДЗ 2
 // function randomNumber(min, max) {
