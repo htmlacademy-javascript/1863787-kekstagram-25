@@ -23,8 +23,6 @@ export default function test() {
 
 
   //ДЗ 7.1
-  //   const massiv = Object.keys(photoObj);
-  //  console.log(massiv);
 
 
   photoObj.forEach((i) => {
@@ -45,9 +43,11 @@ export default function test() {
 
 
   const pictureLikes = document.querySelectorAll('.picture__likes');
+
   pictures.addEventListener('click', (evt) => {
     bigPicture.classList.remove('hidden');
     body.classList.add('modal-open');
+
 
     document.querySelector('.social__comment-count').classList.add('hidden'); // временная hidden
     document.querySelector('.comments-loader').classList.add('hidden');// временная hidden
@@ -79,6 +79,24 @@ export default function test() {
     }
   })
 
+
+  const imgUpload1 = document.querySelector('.img-upload');
+  const imgUpload = document.querySelector('.img-upload__start');
+  const imgOverlay = document.querySelector('.img-upload__overlay');
+  const imgCancel = document.querySelector('.img-upload__cancel');
+  const bigPreview = document.querySelector('.big-picture__preview');
+  imgUpload.addEventListener('click', (evets) =>{
+    imgOverlay.classList.remove('hidden');
+    bigPicture.classList.add('hidden');
+  });
+  imgCancel.addEventListener('click', () =>{
+    imgOverlay.classList.add('hidden');
+  });
+
+
+
+
+
 }
 test();
 
@@ -100,6 +118,12 @@ avatar.forEach((ava) => {
 });
 socialComment.removeChild(socialComment.children[0]);
 socialComment.removeChild(socialComment.children[0]);
+
+
+
+
+
+
 
 
 // ДЗ 2
