@@ -130,7 +130,7 @@ const pristine = new Pristine(form, {
 scaleControl.value = `${Number("50")}%`;
 
 scaleSmaller.addEventListener('click', () => {
-  // const resultMinus =  scaleControl.value - 25;
+
   if(scaleControl.value === `${Number("50")}%`){
      scaleControl.value = Number("50")  - 25;
      scaleControl.value += "%"
@@ -147,7 +147,7 @@ scaleSmaller.addEventListener('click', () => {
 });
 
 scaleBigger.addEventListener('click', () => {
-//  const resultSum = +scaleControl.value + +25;
+
   if(scaleControl.value == `${Number("25")}%`){
     scaleControl.value =  +Number("25")+  +25;
     scaleControl.value += "%"
@@ -175,7 +175,6 @@ imgCancel.addEventListener('click', () => {
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
-
   const isValid = pristine.validate();
   if (isValid) {
     console.log('Можно отправлять');
@@ -183,6 +182,27 @@ form.addEventListener('submit', (evt) => {
     console.log('Форма невалидна');
   }
 });
+const textHashtags = form.querySelector('.text__hashtags');
+
+textHashtags.addEventListener('keydown', (evenEntr) => {
+  if (evenEntr.key === 'Enter') {
+    const hashtagsMassiv = textHashtags.value;
+   const znak = '@№$%^& ';
+   const znakSplit = znak.split('');
+    const spliT = hashtagsMassiv.split('');
+
+    spliT.forEach((eventSplit) =>{
+      znakSplit.forEach((znSplit) =>{
+      if(eventSplit === znSplit){
+        console.log('недопускются знаки @ № $ % ^ & space');
+      }
+    });
+    });
+
+  }
+})
+
+
 
 
 //картинки
