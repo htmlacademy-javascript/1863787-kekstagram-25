@@ -194,7 +194,10 @@ textHashtags.addEventListener('keydown', (evenEntr) => {
     spliT.forEach((eventSplit) =>{
       znakSplit.forEach((znSplit) =>{
       if(eventSplit === znSplit){
-        console.log('недопускются знаки @ № $ % ^ & space');
+        // console.log('недопускются знаки @ № $ % ^ & space');
+
+        textHashtags.setCustomValidity("недопускются знаки @ № $ % ^ & space")
+        textHashtags.reportValidity()
       }
     });
     });
