@@ -44,26 +44,19 @@ export default function test() {
 
   const pictureLikes = document.querySelectorAll('.picture__likes');
   const picture = document.querySelectorAll('.picture');
-  picture.forEach(el => {
+  picture.forEach((el) => {
     el.addEventListener('click', (evt) => {
       bigPicture.classList.remove('hidden');
       body.classList.add('modal-open');
-
-
       document.querySelector('.social__comment-count').classList.add('hidden'); // временная hidden
       document.querySelector('.comments-loader').classList.add('hidden');// временная hidden
-
       bigPict.src = evt.target.src;
-
       const id = Number(evt.target.dataset.id);
       likesCount.innerHTML = pictureLikes[id].innerHTML;
-
       commentsCount.innerHTML = text.length;
-
       description.forEach((i) => {
         socialCaption.innerHTML = i.opis;
       });
-
     });
   });
 
@@ -78,93 +71,70 @@ export default function test() {
       bigPicture.classList.add('hidden');
       body.classList.remove('modal-open');
     }
-  })
-
-
+  });
 }
 test();
-
 avatar.forEach((ava) => {
   const social = socialComment.querySelector('.social__comment').cloneNode(true);
   const socialText = social.querySelector('.social__text');
   const socialPicture = social.querySelector('.social__picture');
   socialPicture.src = `img/${ava.url}.svg`;
-
   nameFolov.forEach((nam) => {
     socialPicture.alt = nam.name;
   });
   text.forEach((tex) => {
     socialText.innerHTML = tex;
   });
-
   socialComment.append(social);
-
 });
 socialComment.removeChild(socialComment.children[0]);
 socialComment.removeChild(socialComment.children[0]);
-
-
-
 //дз 8
-
 const imgOverlay = document.querySelector('.img-upload__overlay');
 const imgCancel = document.querySelector('.img-upload__cancel');
-
 const scaleControl = document.querySelector('.scale__control.scale__control--value');
-const imgUpload = document.querySelector('.img-upload__scale');
-
 const scaleSmaller = document.querySelector('.scale__control--smaller');
 const scaleBigger = document.querySelector('.scale__control--bigger');
 imgOverlay.classList.remove('hidden');
-
 const form = document.querySelector('.img-upload__form');
 const pristine = new Pristine(form, {
   classTo: 'img-upload__form',
   errorTextParent: 'img-upload__text',
   errorTextClass: 'img-upload__form-text',
 });
-
-
 //вылидация числа
-
-scaleControl.value = `${Number("50")}%`;
-
+scaleControl.value = `${Number('50')}%`;
 scaleSmaller.addEventListener('click', () => {
 
-  if(scaleControl.value === `${Number("50")}%`){
-     scaleControl.value = Number("50")  - 25;
-     scaleControl.value += "%"
+  if (scaleControl.value === `${Number('50')}%`) {
+    scaleControl.value = Number('50') - 25;
+    scaleControl.value += '%';
   }
- else if (scaleControl.value == `${Number("75")}%`){
-  scaleControl.value = Number("75")  - 25;
-  scaleControl.value += "%"
- }
- else if (scaleControl.value == `${Number("100")}%`){
-  scaleControl.value = Number("100")  - 25;
-  scaleControl.value += "%"
-}
-
+  else if (scaleControl.value === `${Number('75')}%`) {
+    scaleControl.value = Number('75') - 25;
+    scaleControl.value += '%';
+  }
+  else if (scaleControl.value === `${Number('100')}%`) {
+    scaleControl.value = Number('100') - 25;
+    scaleControl.value += '%';
+  }
 });
 
 scaleBigger.addEventListener('click', () => {
 
-  if(scaleControl.value == `${Number("25")}%`){
-    scaleControl.value =  +Number("25")+  +25;
-    scaleControl.value += "%"
+  if (scaleControl.value === `${Number('25')}%`) {
+    scaleControl.value = +Number('25') + +25;
+    scaleControl.value += '%';
   }
-  else if (scaleControl.value == `${Number("50")}%`){
-    scaleControl.value =  +Number("50")+  +25;
-    scaleControl.value += "%"
+  else if (scaleControl.value === `${Number('50')}%`) {
+    scaleControl.value = +Number('50') + +25;
+    scaleControl.value += '%';
   }
-  else if (scaleControl.value == `${Number("75")}%`){
-    scaleControl.value =  +Number("75")+  +25;
-    scaleControl.value += "%"
+  else if (scaleControl.value === `${Number('75')}%`) {
+    scaleControl.value = +Number('75') + +25;
+    scaleControl.value += '%';
   }
-
 });
-
-
-
 
 imgCancel.addEventListener('click', () => {
   imgOverlay.classList.add('hidden');
@@ -172,14 +142,13 @@ imgCancel.addEventListener('click', () => {
 
 //Формы
 
-
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const isValid = pristine.validate();
   if (isValid) {
-    console.log('Можно отправлять');
+    // console.log('Можно отправлять');
   } else {
-    console.log('Форма невалидна');
+    // console.log('Форма невалидна');
   }
 });
 const textHashtags = form.querySelector('.text__hashtags');
@@ -190,41 +159,38 @@ textHashtags.addEventListener('keydown', (evenEntr) => {
     const znak = '@№$%^& ';
     const znakSplit = znak.split('');
     const spliT = hashtagsMassiv.split('');
-    const spliT2 =hashtagsMassiv.split('#');
+    const spliT2 = hashtagsMassiv.split('#');
 
-    spliT.forEach((eventSplit) =>{
-      znakSplit.forEach((znSplit) =>{
-      if(eventSplit === znSplit){
-        textHashtags.setCustomValidity("недопускются знаки @ № $ % ^ & space")
-        textHashtags.reportValidity()
-      }
-      else if(spliT2.length === 7){
-        textHashtags.setCustomValidity("нельзя больше 5 #")
-        textHashtags.reportValidity()
-      }
-    });
+    spliT.forEach((eventSplit) => {
+      znakSplit.forEach((znSplit) => {
+        if (eventSplit === znSplit) {
+          textHashtags.setCustomValidity('недопускются знаки @ № $ % ^ & space');
+          textHashtags.reportValidity();
+        }
+        else if (spliT2.length === 7) {
+          textHashtags.setCustomValidity('нельзя больше 5 #');
+          textHashtags.reportValidity();
+        }
+      });
     });
 
-const count = spliT2.reduce((acc, n) => (acc[n] = (acc[n] || 0) + 1, acc) , { });
-const duplicateCount = Object.values(count).filter(n => n > 1).length;
-if (duplicateCount === 1){
-textHashtags.setCustomValidity("одинаковые слова")
-textHashtags.reportValidity()
-}
+    const count = spliT2.reduce((acc, n) => (acc[n] === (acc[n] || 0) + 1, acc), {});
+    const duplicateCount = Object.values(count).filter((n) => n > 1).length;
+    if (duplicateCount === 1) {
+      textHashtags.setCustomValidity('одинаковые слова');
+      textHashtags.reportValidity();
+    }
   }
-})
-
-
-
+});
 
 //картинки
 
-const effectsItem = document.querySelector('.effects__list');
-const imgPreview = document.querySelector('.img-upload__preview');
+// const effectsItem = document.querySelector('.effects__list');
+// const imgPreview = document.querySelector('.img-upload__preview');
 
-effectsItem.addEventListener('click', (eventEff) => {
-  console.log(eventEff.target.querySelector('.effects__preview'))
-});
+// effectsItem.addEventListener('click', (eventEff) => {
+//   console.log(eventEff.target.querySelector('.effects__preview'))
+// });
 
 
 // ДЗ 2
