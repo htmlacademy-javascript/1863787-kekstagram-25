@@ -187,21 +187,30 @@ const textHashtags = form.querySelector('.text__hashtags');
 textHashtags.addEventListener('keydown', (evenEntr) => {
   if (evenEntr.key === 'Enter') {
     const hashtagsMassiv = textHashtags.value;
-   const znak = '@№$%^& ';
-   const znakSplit = znak.split('');
+    const znak = '@№$%^& ';
+    const znakSplit = znak.split('');
     const spliT = hashtagsMassiv.split('');
+    const spliT2 =hashtagsMassiv.split('#');
 
     spliT.forEach((eventSplit) =>{
       znakSplit.forEach((znSplit) =>{
       if(eventSplit === znSplit){
-        // console.log('недопускются знаки @ № $ % ^ & space');
-
         textHashtags.setCustomValidity("недопускются знаки @ № $ % ^ & space")
+        textHashtags.reportValidity()
+      }
+      else if(spliT2.length === 7){
+        textHashtags.setCustomValidity("нельзя больше 5 #")
         textHashtags.reportValidity()
       }
     });
     });
 
+const count = spliT2.reduce((acc, n) => (acc[n] = (acc[n] || 0) + 1, acc) , { });
+const duplicateCount = Object.values(count).filter(n => n > 1).length;
+if (duplicateCount === 1){
+textHashtags.setCustomValidity("одинаковые слова")
+textHashtags.reportValidity()
+}
   }
 })
 
