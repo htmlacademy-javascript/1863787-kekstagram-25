@@ -45,6 +45,8 @@ export const commentsCount = document.querySelector('.comments-count');
 export const body = document.querySelector('body');
 export const socialCaption = document.querySelector('.social__caption');
 export const socialComment = document.querySelector('.social__comments');
+export const socialCount = document.querySelector('.social__comment-count');
+export const socialLoader = document.querySelector('.social__comments-loader');
 export const avatar = [
   { id: 0, url: 'avatar-1' },
   { id: 1, url: 'avatar-2' },

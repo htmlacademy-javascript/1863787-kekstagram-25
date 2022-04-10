@@ -1,4 +1,4 @@
-import { photoObj, nameFolov, maximum, text, arrText, pictures, template, bigPicture, bigPictureS, cancelButton, commentsCount, body, socialCaption, description, socialComment, avatar } from './data.js';
+import { photoObj, socialCount, socialLoader, nameFolov, maximum, text, arrText, pictures, template, bigPicture, bigPictureS, cancelButton, commentsCount, body, socialCaption, description, socialComment, avatar } from './data.js';
 
 //4.9. Больше деталей
 export default function test() {
@@ -48,12 +48,9 @@ export default function test() {
     el.addEventListener('click', (evt) => {
       bigPicture.classList.remove('hidden');
       body.classList.add('modal-open');
-      document.querySelector('.social__comment-count').classList.add('hidden'); // временная hidden
-      document.querySelector('.comments-loader').classList.add('hidden');// временная hidden
       bigPict.src = evt.target.src;
       const id = Number(evt.target.dataset.id);
       likesCount.innerHTML = pictureLikes[id].innerHTML;
-      commentsCount.innerHTML = text.length;
       description.forEach((i) => {
         socialCaption.innerHTML = i.opis;
       });
@@ -181,6 +178,23 @@ textHashtags.addEventListener('keydown', (evenEntr) => {
       textHashtags.reportValidity();
     }
   }
+});
+//зд 8.2
+const commentS = socialComment.querySelectorAll('.social__comment');
+commentsCount.textContent = commentS.length;
+
+if (commentS.length < 5) {
+  socialCount.innerHTML =  `${commentS.length} комментариев`;
+}
+
+socialLoader.addEventListener('click', () => {
+  commentS.forEach((ivent) => {
+    const socialC = ivent.cloneNode(true);
+    socialComment.append(socialC);
+  });
+
+  const commeS = socialComment.querySelectorAll('.social__comment');
+  commentsCount.textContent = commeS.length;
 });
 
 //картинки
