@@ -1,7 +1,7 @@
 import { photoObj, socialCount, socialLoader, nameFolov, maximum, text, arrText, pictures, template, bigPicture, bigPictureS, cancelButton, commentsCount, body, socialCaption, description, socialComment, avatar } from './data.js';
 
 //4.9. Больше деталей
-export default function test() {
+
 
   function randomLikes(max, min) {
     return Math.floor(Math.random() * (max - min) + min);
@@ -24,38 +24,41 @@ export default function test() {
 
   //ДЗ 7.1
 
+  const renderSimilarList = (photos) => {
+      // console.log(photos.url);
+  };
+  //   photoObj.forEach((i) => {
+  //   const clonePopup = template.querySelector('.picture').cloneNode(true);
+  //   const pictureImg = clonePopup.querySelector('.picture__img');
+  //   pictureImg.src = `photos/${i.url}.jpg`;
+  //   pictureImg.setAttribute('data-id', `${i.id}`);
 
-  photoObj.forEach((i) => {
-    const clonePopup = template.querySelector('.picture').cloneNode(true);
-    const pictureImg = clonePopup.querySelector('.picture__img');
-    pictureImg.src = `photos/${i.url}.jpg`;
-    pictureImg.setAttribute('data-id', `${i.id}`);
+  //   clonePopup.querySelector('.picture__likes').textContent = randomLikes(15, 200);
+  //   clonePopup.querySelector('.picture__comments').textContent = text.length;
+  //   pictures.append(clonePopup);
+  // });
 
-    clonePopup.querySelector('.picture__likes').textContent = randomLikes(15, 200);
-    clonePopup.querySelector('.picture__comments').textContent = text.length;
-    pictures.append(clonePopup);
-  });
+export {renderSimilarList};
 
-  const bigPict = bigPictureS.querySelector('img');
-  const likesCount = document.querySelector('.likes-count');
+  // const bigPict = bigPictureS.querySelector('img');
+  // const likesCount = document.querySelector('.likes-count');
 
   //ДЗ 7.2
 
-
-  const pictureLikes = document.querySelectorAll('.picture__likes');
-  const picture = document.querySelectorAll('.picture');
-  picture.forEach((el) => {
-    el.addEventListener('click', (evt) => {
-      bigPicture.classList.remove('hidden');
-      body.classList.add('modal-open');
-      bigPict.src = evt.target.src;
-      const id = Number(evt.target.dataset.id);
-      likesCount.innerHTML = pictureLikes[id].innerHTML;
-      description.forEach((i) => {
-        socialCaption.innerHTML = i.opis;
-      });
-    });
-  });
+  // const pictureLikes = document.querySelectorAll('.picture__likes');
+  // const picture = document.querySelectorAll('.picture');
+  // picture.forEach((el) => {
+  //   el.addEventListener('click', (evt) => {
+  //     bigPicture.classList.remove('hidden');
+  //     body.classList.add('modal-open');
+  //     bigPict.src = evt.target.src;
+  //     const id = Number(evt.target.dataset.id);
+  //     likesCount.innerHTML = pictureLikes[id].innerHTML;
+  //     description.forEach((i) => {
+  //       socialCaption.innerHTML = i.opis;
+  //     });
+  //   });
+  // });
 
   cancelButton.onclick = function () {
     bigPicture.classList.add('hidden');
@@ -69,8 +72,7 @@ export default function test() {
       body.classList.remove('modal-open');
     }
   });
-}
-test();
+
 avatar.forEach((ava) => {
   const social = socialComment.querySelector('.social__comment').cloneNode(true);
   const socialText = social.querySelector('.social__text');
@@ -99,6 +101,7 @@ const pristine = new Pristine(form, {
   errorTextParent: 'img-upload__text',
   errorTextClass: 'img-upload__form-text',
 });
+
 //вылидация числа
 const imgUploadPreview = document.querySelector('.img-upload__preview');
 scaleControl.value = `${Number('100')}%`;
@@ -312,6 +315,7 @@ effectsList.forEach((eventEff) => {
     }
   });
 });
+
 
 // ДЗ 2
 // function randomNumber(min, max) {
