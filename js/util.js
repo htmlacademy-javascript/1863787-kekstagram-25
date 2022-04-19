@@ -1,4 +1,4 @@
-import { photoObj, socialCount, socialLoader, nameFolov, maximum, text, arrText, pictures, template, bigPicture, bigPictureS, cancelButton, commentsCount, body, socialCaption, description, socialComment, avatar } from './data.js';
+import { socialCount, socialLoader, nameFolov, maximum, text, arrText, pictures, template, bigPicture, bigPictureS, cancelButton, commentsCount, body, socialComment } from './data.js';
 
 //4.9. Больше деталей
 
@@ -24,9 +24,6 @@ import { photoObj, socialCount, socialLoader, nameFolov, maximum, text, arrText,
 
   //ДЗ 7.1
 
-  const renderSimilarList = (photos) => {
-      // console.log(photos.url);
-  };
   //   photoObj.forEach((i) => {
   //   const clonePopup = template.querySelector('.picture').cloneNode(true);
   //   const pictureImg = clonePopup.querySelector('.picture__img');
@@ -37,8 +34,6 @@ import { photoObj, socialCount, socialLoader, nameFolov, maximum, text, arrText,
   //   clonePopup.querySelector('.picture__comments').textContent = text.length;
   //   pictures.append(clonePopup);
   // });
-
-export {renderSimilarList};
 
   // const bigPict = bigPictureS.querySelector('img');
   // const likesCount = document.querySelector('.likes-count');
@@ -73,22 +68,23 @@ export {renderSimilarList};
     }
   });
 
-avatar.forEach((ava) => {
-  const social = socialComment.querySelector('.social__comment').cloneNode(true);
-  const socialText = social.querySelector('.social__text');
-  const socialPicture = social.querySelector('.social__picture');
-  socialPicture.src = `img/${ava.url}.svg`;
-  nameFolov.forEach((nam) => {
-    socialPicture.alt = nam.name;
-  });
-  text.forEach((tex) => {
-    socialText.innerHTML = tex;
-  });
-  socialComment.append(social);
-});
-socialComment.removeChild(socialComment.children[0]);
-socialComment.removeChild(socialComment.children[0]);
+// avatar.forEach((ava) => {
+//   const social = socialComment.querySelector('.social__comment').cloneNode(true);
+//   const socialText = social.querySelector('.social__text');
+//   const socialPicture = social.querySelector('.social__picture');
+//   socialPicture.src = `img/${ava.url}.svg`;
+//   nameFolov.forEach((nam) => {
+//     socialPicture.alt = nam.name;
+//   });
+//   text.forEach((tex) => {
+//     socialText.innerHTML = tex;
+//   });
+//   socialComment.append(social);
+// });
+// socialComment.removeChild(socialComment.children[0]);
+// socialComment.removeChild(socialComment.children[0]);
 //дз 8
+
 const imgOverlay = document.querySelector('.img-upload__overlay');
 const imgCancel = document.querySelector('.img-upload__cancel');
 const scaleControl = document.querySelector('.scale__control.scale__control--value');
@@ -190,22 +186,22 @@ textHashtags.addEventListener('keydown', (evenEntr) => {
   }
 });
 //зд 8.2
-const commentS = socialComment.querySelectorAll('.social__comment');
-commentsCount.textContent = commentS.length;
+// const commentS = socialComment.querySelectorAll('.social__comment');
+// commentsCount.textContent = commentS.length;
 
-if (commentS.length < 5) {
-  socialCount.innerHTML = `${commentS.length} комментариев`;
-}
+// if (commentS.length < 5) {
+//   socialCount.innerHTML = `${commentS.length} комментариев`;
+// }
 
-socialLoader.addEventListener('click', () => {
-  commentS.forEach((ivent) => {
-    const socialC = ivent.cloneNode(true);
-    socialComment.append(socialC);
-  });
+// socialLoader.addEventListener('click', () => {
+//   commentS.forEach((ivent) => {
+//     const socialC = ivent.cloneNode(true);
+//     socialComment.append(socialC);
+//   });
 
-  const commeS = socialComment.querySelectorAll('.social__comment');
-  commentsCount.textContent = commeS.length;
-});
+//   const commeS = socialComment.querySelectorAll('.social__comment');
+//   commentsCount.textContent = commeS.length;
+// });
 
 //картинки
 

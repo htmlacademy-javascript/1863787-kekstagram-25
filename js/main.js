@@ -1,6 +1,5 @@
 import './util.js';
-import { renderSimilarList } from './util.js';
-import { template, pictures, bigPicture, body, description, socialCaption, bigPictureS } from './data.js'
+import { socialLoader, commentsCount, socialCount, template, pictures, bigPicture, body, socialComment, socialCaption, bigPictureS, nameFolov, avatar } from './data.js'
 // дз 10
 
 const formId = document.querySelector('#upload-select-image');
@@ -35,13 +34,46 @@ fetch('https://25.javascript.pages.academy/kekstagram/data')
         bigPict.src = evt.target.src;
         const id = Number(evt.target.dataset.id);
         likesCount.innerHTML = pictureLikes[id].innerHTML;
-        data.forEach((descr) => {
-          socialCaption.innerHTML = descr.description;
+        socialCaption.innerHTML = data[id].description;
+        const dataId = data[id].comments;
+        console.log(dataId, 'dsads');
+
+        dataId.forEach((ava) => {
+          const social = socialComment.querySelector('.social__comment').cloneNode(true);
+          const socialText = social.querySelector('.social__text');
+          const socialPicture = social.querySelector('.social__picture');
+          socialPicture.src = `${ava.avatar}`;
+          const name = ava.name
+          socialPicture.alt = name;
+          const message = ava.message
+          socialText.innerHTML = message;
+
+          socialComment.append(social);
         });
+        socialComment.removeChild(socialComment.children[0]);
+        socialComment.removeChild(socialComment.children[0]);
+
+
+
+        const commentS = socialComment.querySelectorAll('.social__comment');
+        commentsCount.textContent = commentS.length;
+
+        if (dataId.length < 5) {
+          socialCount.innerHTML = `${commentS.length} комментариев`;
+        }
+
+        socialLoader.addEventListener('click', () => {
+          commentS.forEach((ivent) => {
+            const socialC = ivent.cloneNode(true);
+            socialComment.append(socialC);
+          });
+
+          const commeS = socialComment.querySelectorAll('.social__comment');
+          commentsCount.textContent = commeS.length;
+        });
+
+
+
       });
     });
-  })
-  .then((wizards) => {
-    renderSimilarList(wizards);
-  })
-
+  });
