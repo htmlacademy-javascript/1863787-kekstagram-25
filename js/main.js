@@ -1,5 +1,5 @@
 import './util.js';
-import { socialLoader, commentsCount, socialCount, template, pictures, bigPicture, body, socialComment, socialCaption, bigPictureS, nameFolov, avatar } from './data.js'
+import { socialLoader, commentsCount, socialCount, template, pictures, bigPicture, body, socialComment, socialCaption, bigPictureS } from './data.js'
 // дз 10
 
 const formId = document.querySelector('#upload-select-image');
@@ -13,7 +13,7 @@ fetch('https://25.javascript.pages.academy/kekstagram/data')
   })
   .then((data) => {
     console.log('Результат', data);
-    data.forEach((i) => {
+    data.slice().forEach((i) => {
       const clonePopup = template.querySelector('.picture').cloneNode(true);
       const pictureImg = clonePopup.querySelector('.picture__img');
       pictureImg.src = `${i.url}`;
@@ -22,7 +22,29 @@ fetch('https://25.javascript.pages.academy/kekstagram/data')
       clonePopup.querySelector('.picture__likes').textContent = i.likes;
       clonePopup.querySelector('.picture__comments').textContent = i.comments.length;
       pictures.append(clonePopup);
+
+
+      const filterRandom = document.querySelector('#filter-random');
+
+      filterRandom.addEventListener('click', () => {
+
+            const item = data[Math.floor(Math.random() * data.length)];
+            console.log('dsadsa', item);
+
+            pictures.append(item.innerHTML);
+
+
+
+      });
+
     });
+
+
+
+
+
+
+
     const bigPict = bigPictureS.querySelector('img');
     const likesCount = document.querySelector('.likes-count');
     const pictureLikes = document.querySelectorAll('.picture__likes');
